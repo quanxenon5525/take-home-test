@@ -1,11 +1,22 @@
-import { Footer, MainBody, TopNav } from "./components";
+import {
+  BasicBreadcrumbs,
+  FilterList,
+  Layout,
+  ProductList,
+} from "./components";
 
 export default function Home() {
   return (
-    <div className="grid items-center content-between	justify-items-center min-h-screen gap-16">
-      <TopNav />
-      <MainBody>meo meo</MainBody>
-      <Footer />
-    </div>
+    <Layout>
+      <div className="px-3">
+        <div className="row-start-2 row-end-3 w-full">
+          <div className="flex flex-row justify-between px-5 py-3 items-center">
+            <BasicBreadcrumbs />
+            <FilterList />
+          </div>
+        </div>
+        <ProductList />
+      </div>
+    </Layout>
   );
 }
