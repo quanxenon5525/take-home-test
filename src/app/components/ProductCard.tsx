@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { FC } from "react";
 import { CardProductProps } from "../types";
-import { CardActionArea, Chip, Rating } from "@mui/material";
+import { CardActionArea, Chip } from "@mui/material";
 import { RatingStar } from "./RatingStar";
 
 export const ProductCard: FC<CardProductProps> = ({
@@ -17,7 +17,6 @@ export const ProductCard: FC<CardProductProps> = ({
   category,
   price,
   rating,
-  review,
 }) => {
   const handleProduct = () => {
     console.log("==> product");
@@ -54,8 +53,8 @@ export const ProductCard: FC<CardProductProps> = ({
         </CardContent>
       </CardActionArea>
       <div className="ml-3">
-        <div className="font-semibold">Review: {review} reviews </div>
-        <RatingStar rating={rating} />
+        <div className="font-semibold">Review: {rating?.count} reviews </div>
+        <RatingStar rate={rating?.rate} />
       </div>
 
       <CardActions className="mt-5 flex justify-center">

@@ -1,13 +1,14 @@
 import { Rating } from "@mui/material";
+import { RatingReview } from "../types";
 
-export const RatingStar = ({ rating }: { rating: number }) => {
-  const integerValue = Math.floor(rating);
-  const precision = rating % 1 === 0 ? 1 : 0.5;
+export const RatingStar = (rating: RatingReview | any) => {
+  const integerValue = Math.round(rating?.rate) || 0;
+  const precision = 1;
 
   return (
     <Rating
       name="half-rating-read"
-      defaultValue={integerValue}
+      value={integerValue}
       precision={precision}
       readOnly
     />

@@ -1,11 +1,12 @@
 "use client";
 
 import { ProductContextProps } from "@/app/types";
+import { CircularProgress } from "@mui/material";
 import { createContext, useEffect, useState } from "react";
 
 export const ProductContext = createContext({
   data: [],
-  loading: false,
+  loading: true,
 });
 
 export const ProductProvider = ({ children }: ProductContextProps) => {
@@ -27,6 +28,8 @@ export const ProductProvider = ({ children }: ProductContextProps) => {
     };
     fetchData();
   }, []);
+
+  if (loading) return <CircularProgress />;
 
   return (
     <ProductContext.Provider value={{ data, loading }}>
