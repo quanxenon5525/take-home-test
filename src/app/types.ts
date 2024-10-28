@@ -1,8 +1,10 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type LayoutProps = {
   children: React.ReactNode;
 };
 
-export type MainBodyProps = {
+export type ProductContextProps = {
   children: React.ReactNode;
 };
 
@@ -17,5 +19,8 @@ export type CardProductProps = {
 };
 
 export type FilterProps = {
-  data?: string[];
+  options: Record<string, string>[];
+  label?: string;
+  // setFilter: Dispatch<SetStateAction<string>>;
+  control: any;
 };

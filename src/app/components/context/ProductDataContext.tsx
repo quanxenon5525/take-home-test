@@ -1,35 +1,36 @@
-// "use client";
-// import { CardProductProps, MainBodyProps } from "@/app/types";
-// import React, { createContext, useEffect, useState } from "react";
-// import { LoadingList } from "../LoadingList";
+"use client";
 
-// export const ProductContext = createContext<any>({
-//   children: Array,
-// });
+import { ProductContextProps } from "@/app/types";
+import { createContext, useEffect, useState } from "react";
 
-// export const ProductProvider = (children: React.ReactNode) => {
-//   const [data, setData] = useState<CardProductProps | any>(null);
-//   const [loading, setLoading] = useState(true);
+export const ProductContext = createContext({
+  data: [],
+  loading: false,
+});
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const data = await fetch("https://fakestoreapi.com/products").then(
-//           (res) => res.json()
-//         );
-//         setData(data);
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     fetchData();
-//   }, []);
+export const ProductProvider = ({ children }: ProductContextProps) => {
+  const [data, setData] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
 
-//   if (loading) return <LoadingList />;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetch("https://fakestoreapi.com/products").then(
+          (res) => res.json()
+        );
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
-//   return (
-//     <ProductContext.Provider value={data}>{children}</ProductContext.Provider>
-//   );
-// };
+  return (
+    <ProductContext.Provider value={{ data, loading }}>
+      {children}
+    </ProductContext.Provider>
+  );
+};

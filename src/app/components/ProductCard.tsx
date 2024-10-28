@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { FC } from "react";
 import { CardProductProps } from "../types";
 import { CardActionArea, Chip, Rating } from "@mui/material";
+import { RatingStar } from "./RatingStar";
 
 export const ProductCard: FC<CardProductProps> = ({
   title,
@@ -54,7 +55,7 @@ export const ProductCard: FC<CardProductProps> = ({
       </CardActionArea>
       <div className="ml-3">
         <div className="font-semibold">Review: {review} reviews </div>
-        <Rating name="simple-controlled" value={rating} />
+        <RatingStar rating={rating} />
       </div>
 
       <CardActions className="mt-5 flex justify-center">

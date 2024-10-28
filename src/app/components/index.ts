@@ -4,3 +4,4 @@ export * from "./Breadcrumbs";
 export * from "./ProductList";
 export * from "./LoadingList";
 export * from "./FilterList";
+export * from "./RatingStar";
