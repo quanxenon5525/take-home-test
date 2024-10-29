@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import { LayoutProps } from "../../types";
-import { TopNav } from "./TopNav";
+import { FC } from "react";
+import { LayoutProps } from "../types";
 import { Footer } from "./Footer";
+import { TopNav } from "./TopNav";
 
-export const Layout: FC<LayoutProps> = ({ children }) => {
+const HomeLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className="grid grid-rows-[auto_auto_1fr_auto] grid-cols-1 min-h-screen gap-8">
       <div className="row-start-1 row-end-2 w-full">
@@ -16,3 +16,5 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     </div>
   );
 };
+
+export default HomeLayout;

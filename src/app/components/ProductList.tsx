@@ -1,8 +1,7 @@
-"use client";
 import { Grid2 } from "@mui/material";
 import { Fragment, useContext, useMemo } from "react";
 import { CardProductProps } from "../types";
-import { ProductContext } from "./context/ProductDataContext";
+import { ProductContext } from "../context/ProductDataContext";
 import { FilterList } from "./FilterList";
 import { ProductCard } from "./ProductCard";
 import { useForm } from "react-hook-form";

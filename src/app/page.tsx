@@ -1,17 +1,14 @@
-import {
-  BasicBreadcrumbs,
-  FilterList,
-  Layout,
-  ProductList,
-} from "./components";
-import { ProductProvider } from "./components/context/ProductDataContext";
+"use client";
+import HomeLayout from "./components/HomeLayout";
+import { ProductList } from "./components/ProductList";
+import { ProductProvider } from "./context/ProductDataContext";
 
 export default function Home() {
   return (
-    <Layout>
-      <ProductProvider>
+    <ProductProvider>
+      <HomeLayout>
         <ProductList />
-      </ProductProvider>
-    </Layout>
+      </HomeLayout>
+    </ProductProvider>
   );
 }

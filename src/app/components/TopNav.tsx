@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { CartIcon } from "../../../../public/icons/CartIcon";
+import { CartIcon } from "../../../public/icons/CartIcon";
 import Link from "next/link";
 
 export const TopNav = () => {
