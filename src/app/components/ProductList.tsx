@@ -1,15 +1,16 @@
-import { Grid2 } from "@mui/material";
-import { Fragment, useContext, useMemo } from "react";
-import { CardProductProps } from "../types";
-import { ProductContext } from "../context/ProductDataContext";
-import { FilterList } from "./FilterList";
-import { ProductCard } from "./ProductCard";
+import { Box, Grid2 } from "@mui/material";
+import { Fragment, useContext, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { ProductContext } from "../context/ProductDataContext";
+import { CardProductProps } from "../types";
 import { BasicBreadcrumbs } from "./Breadcrumbs";
-import CircularProgress from "@mui/material/CircularProgress";
+import { FilterProduct } from "./FilterProduct";
+import { ProductCard } from "./ProductCard";
+import { SortProduct } from "./SortProduct";
 
 export const ProductList = () => {
-  const { data, loading } = useContext(ProductContext);
+  const [sortOption, setSortOption] = useState("");
+  const { data } = useContext(ProductContext);
   const options = useMemo(() => {
     return data.filter(
       (option: any, index, self) =>
@@ -29,41 +30,53 @@ export const ProductList = () => {
 
   const filters = watch();
   const filteredData = useMemo(() => {
-    return data
-      .filter((product: CardProductProps) => {
-        const matchesCategory = filters.category
-          ? product.category === filters.category
-          : true;
+    const filtered = data.filter((product: CardProductProps) => {
+      const matchesCategory = filters.category
+        ? product.category === filters.category
+        : true;
 
-        const price = Number(product.price);
-        const maxPrice = Number(filters.maxPrice);
-        const matchesPrice = maxPrice ? price <= maxPrice : true;
+      const price = Number(product.price);
+      const maxPrice = Number(filters.maxPrice);
+      const matchesPrice = maxPrice ? price <= maxPrice : true;
 
-        const minRating = Number(filters.minRating);
-        const matchesRating = minRating
-          ? Number(product.rating.rate) <= minRating
-          : true;
+      const minRating = Number(filters.minRating);
+      const matchesRating = minRating
+        ? Number(product.rating.rate) <= minRating
+        : true;
 
-        return matchesCategory && matchesPrice && matchesRating;
-      })
-      .sort((a: CardProductProps, b: CardProductProps) => {
-        const ratingDifference = Number(b.rating.rate) - Number(a.rating.rate);
-        if (ratingDifference !== 0) return ratingDifference;
-        return Number(b.price) - Number(a.price);
-      });
-  }, [data, filters]);
+      return matchesCategory && matchesPrice && matchesRating;
+    });
 
-  if (!data && loading) return <CircularProgress />;
-  // if (!data && loading) return <LoadingList />;
+    return filtered.sort((a: CardProductProps, b: CardProductProps) => {
+      switch (sortOption) {
+        case "priceLowToHigh":
+          return Number(a.price) - Number(b.price);
+        case "priceHighToLow":
+          return Number(b.price) - Number(a.price);
+        case "ratingHighToLow":
+          return Number(b.rating.rate) - Number(a.rating.rate);
+        case "nameAToZ":
+          return a.title.localeCompare(b.title);
+        case "nameZToA":
+          return b.title.localeCompare(a.title);
+        default:
+          return 0;
+      }
+    });
+  }, [data, filters, sortOption]);
 
   return (
     <Fragment>
       <div className="px-3">
         <div className="row-start-2 row-end-3 w-full">
           <BasicBreadcrumbs />
-          <div className="flex flex-row px-5 py-3 items-center mb-5 max-w">
-            <FilterList control={control} options={options} />
-          </div>
+          <Box className="w-full flex flex-col md:flex-row justify-between px-5 py-3 md:justify-center mb-5">
+            <FilterProduct control={control} options={options} />
+            <SortProduct
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+            />
+          </Box>
         </div>
         <div className="row-start-3 row-end-4 w-full">
           <Grid2 container spacing={3} className="flex justify-center">
@@ -71,6 +84,7 @@ export const ProductList = () => {
               return (
                 <ProductCard
                   key={index}
+                  id={value.id}
                   title={value.title}
                   image={value.image}
                   description={value.description}

@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import { LayoutProps } from "../types";
 import { Footer } from "./Footer";

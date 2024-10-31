@@ -14,17 +14,18 @@ interface FilterListProps {
   options: CardProductProps[];
 }
 
-export const FilterList: FC<FilterListProps> = ({ control, options }) => {
+export const FilterProduct: FC<FilterListProps> = ({ control, options }) => {
   const categoryOptions = Array.from(
     new Set(options.map((option) => option.category))
   );
   return (
-    <div className="flex flex-row space-x-5 items-center">
+    <div className="w-full flex flex-col md:flex-row space-x-5 md:items-center">
       <Controller
         name="category"
         control={control}
         render={({ field }) => (
           <Autocomplete
+            className="md:w-[15%] w-[55%]"
             onChange={(event, value) => field.onChange(value || "")}
             disablePortal
             defaultValue={field.value}

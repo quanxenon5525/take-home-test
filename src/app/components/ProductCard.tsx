@@ -1,15 +1,17 @@
+import { CardActionArea, Chip } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { ProductContext } from "../context/ProductDataContext";
 import { CardProductProps } from "../types";
-import { CardActionArea, Chip } from "@mui/material";
 import { RatingStar } from "./RatingStar";
 
 export const ProductCard: FC<CardProductProps> = ({
+  id,
   title,
   description,
   image,
@@ -17,12 +19,15 @@ export const ProductCard: FC<CardProductProps> = ({
   price,
   rating,
 }) => {
-  const handleProduct = () => {
-    console.log("==> product");
+  const { addToCart } = useContext(ProductContext);
+
+  const handleAddToCart = () => {
+    addToCart({ id, title, quantity: 1, image, price });
   };
+
   return (
     <Card sx={{ maxWidth: "250px", height: "auto" }}>
-      <CardActionArea onClick={handleProduct}>
+      <CardActionArea>
         <CardMedia
           component="img"
           className="aspect-square w-full h-full object-contain px-5"
@@ -60,7 +65,7 @@ export const ProductCard: FC<CardProductProps> = ({
         <Button size="small" color="primary">
           Buy it now
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleAddToCart}>
           Add to cart
         </Button>
       </CardActions>

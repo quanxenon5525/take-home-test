@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type LayoutProps = {
   children: React.ReactNode;
 };
@@ -11,6 +13,7 @@ export interface RatingReview {
   count?: number;
 }
 export type CardProductProps = {
+  id: any;
   title: string;
   image: string;
   description: string;
@@ -23,4 +26,9 @@ export type FilterProps = {
   options: Record<string, string>[];
   label?: string;
   control: any;
+};
+
+export type SortProductProps = {
+  sortOption: string;
+  setSortOption: Dispatch<SetStateAction<string>>;
 };

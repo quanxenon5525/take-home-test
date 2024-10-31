@@ -5,7 +5,6 @@ import Link from "@mui/material/Link";
 export const BasicBreadcrumbs = () => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
-    console.info("You clicked a breadcrumb.");
   };
   return (
     <div role="presentation" onClick={handleClick}>
