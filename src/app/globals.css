@@ -26,3 +26,31 @@ body {
 .over-ride-img {
   object-fit: contain !important;
 }
+
+.box-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  max-width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .box-cart {
+    flex-direction: row;
+  }
+}
+
+.box-cart > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .box-cart > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+}

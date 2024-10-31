@@ -81,7 +81,8 @@ const CartPage = () => {
             {cartItems?.map((item, index) => (
               <Box
                 key={index}
-                className="flex flex-col items-center justify-between w-full max-w-2xl px-5 py-4 border rounded-lg sm:flex-row space-y-2"
+                // className="flex flex-col items-center justify-between w-full max-w-2xl px-5 py-4 border rounded-lg sm:flex-row space-y-2"
+                className="box-cart"
               >
                 <div className="relative">
                   <IconButton
@@ -134,15 +135,10 @@ const CartPage = () => {
             ))}
           </div>
         </InfiniteScroll>
-        <Typography variant="h6" className="font-bold mt-4">
+        <Typography variant="h6" className="font-bold mt-4 mb-4">
           Tổng giá: ${calculateTotalPrice()}
         </Typography>
-        <Button
-          className="mt-5"
-          onClick={handleCheckout}
-          variant="contained"
-          color="primary"
-        >
+        <Button onClick={handleCheckout} variant="contained" color="primary">
           <Typography variant="h6" className="text-white">
             Thanh toán
           </Typography>
