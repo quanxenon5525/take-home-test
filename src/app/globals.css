@@ -34,6 +34,7 @@ body {
   justify-content: space-between;
   width: 50%;
   max-width: 100%;
+  min-height: 170px;
   padding: 1rem 1.25rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
@@ -53,4 +54,10 @@ body {
   .box-cart > *:not(:last-child) {
     margin-bottom: 0;
   }
+}
+
+.icon-visible {
+  position: absolute;
+  top: -15px;
+  right: -10px;
 }

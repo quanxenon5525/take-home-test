@@ -77,17 +77,13 @@ const CartPage = () => {
           hasMore={paginatedData.length < cartItems.length}
           loader={<Loading />}
         >
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center space-y-5">
             {cartItems?.map((item, index) => (
-              <Box
-                key={index}
-                // className="flex flex-col items-center justify-between w-full max-w-2xl px-5 py-4 border rounded-lg sm:flex-row space-y-2"
-                className="box-cart"
-              >
+              <Box key={index} className="box-cart">
                 <div className="relative">
                   <IconButton
                     onClick={() => handleClickOpen(item.image)}
-                    className="absolute top-[-15px] right-[-10px]"
+                    className="icon-visible"
                   >
                     <VisibleIcon fontSize="large" />
                   </IconButton>
@@ -98,39 +94,39 @@ const CartPage = () => {
                     alt={item.title}
                   />
                 </div>
-                <Typography className="flex-1 mx-4">{item.title}</Typography>
-                <Box className="flex items-center">
-                  <IconButton
-                    onClick={() => {
-                      if (item.quantity === 1) {
-                        handleRemoveItem(item.id);
-                      } else {
-                        updateCartItemQuantity(item.id, item.quantity - 1);
+                <Typography>{item.title}</Typography>
+                <div className="space-x-5 flex flex-row items-center">
+                  <Box className="flex items-center">
+                    <IconButton
+                      onClick={() => {
+                        if (item.quantity === 1) {
+                          handleRemoveItem(item.id);
+                        } else {
+                          updateCartItemQuantity(item.id, item.quantity - 1);
+                        }
+                      }}
+                      color="secondary"
+                    >
+                      <MinusIcon />
+                    </IconButton>
+                    <Typography>{item.quantity}</Typography>
+                    <IconButton
+                      onClick={() =>
+                        updateCartItemQuantity(item.id, item.quantity + 1)
                       }
-                    }}
-                    color="secondary"
-                  >
-                    <MinusIcon />
-                  </IconButton>
-                  <Typography className="mx-2">{item.quantity}</Typography>
+                      color="secondary"
+                    >
+                      <PlusIcon />
+                    </IconButton>
+                  </Box>
+                  <Typography>Giá: ${item.price * item.quantity}</Typography>
                   <IconButton
-                    onClick={() =>
-                      updateCartItemQuantity(item.id, item.quantity + 1)
-                    }
+                    onClick={() => handleRemoveItem(item.id)}
                     color="secondary"
                   >
-                    <PlusIcon />
+                    <DeleteIcon />
                   </IconButton>
-                </Box>
-                <Typography className="mx-4">
-                  Giá: ${item.price * item.quantity}
-                </Typography>
-                <IconButton
-                  onClick={() => handleRemoveItem(item.id)}
-                  color="secondary"
-                >
-                  <DeleteIcon />
-                </IconButton>
+                </div>
               </Box>
             ))}
           </div>
