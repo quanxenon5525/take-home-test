@@ -8,6 +8,10 @@ https://clothes-store-hometest.vercel.app/
 - ReactJS
 - NextJS
 - MaterialUI
+- React Hook Form
+- TailwindCSS
+- Typescript
+- React Infinite Scroll Component
 
 ## Mockup API
 Reference: https://fakestoreapi.com/docs
