@@ -11,7 +11,7 @@ import { SearchIcon } from "../../../public/icons/SearchIcon";
 
 export const ProductList = () => {
   const [sortOption, setSortOption] = useState("");
-  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
+  const [searchTerm, setSearchTerm] = useState("");
   const { data } = useContext(ProductContext);
 
   const options = useMemo(() => {

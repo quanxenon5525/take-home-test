@@ -4,7 +4,7 @@ import { ProductProvider } from "./context/ProductDataContext";
 import HomeLayout from "./components/HomeLayout";
 
 export const metadata: Metadata = {
-  title: "Home Test",
+  title: "Good thing take time",
   description: "Shopping template",
 };
 
@@ -15,6 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <link rel="icon" href="/favicon.png" type="image/x-icon" />
       <body suppressHydrationWarning>
         <ProductProvider>
           <HomeLayout>{children}</HomeLayout>
