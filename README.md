@@ -1,5 +1,8 @@
 This Home-Test project was generated with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Demo URL:
+https://clothes-store-hometest.vercel.app/
+
 ## Framework & Library
 
 - ReactJS
