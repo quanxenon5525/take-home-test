@@ -60,7 +60,7 @@ const CartPage = () => {
               key={index}
               className="flex flex-col items-center justify-between w-full max-w-2xl my-4 p-2 border rounded-lg shadow-md sm:flex-row space-y-5"
             >
-              <div className="relative">
+              <div className="relative px-3">
                 <IconButton
                   onClick={() => handleClickOpen(item.image)}
                   className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
