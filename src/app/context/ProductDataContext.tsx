@@ -3,6 +3,7 @@ import { CircularProgress } from "@mui/material";
 import { createContext, useEffect, useState } from "react";
 import { ProductContextProps } from "../types";
 import useLocalStorage from "../hooks/use-local-storage";
+import { Loading } from "../components/Loading";
 
 interface CartItem {
   id: string;
@@ -111,13 +112,7 @@ export const ProductProvider = ({ children }: ProductContextProps) => {
     }
   }, [cartItems]);
 
-  if (loading)
-    return (
-      <div className="flex flex-col items-center mt-[30%] space-y-5">
-        <CircularProgress color="inherit" />
-        <p className="font-bold">Please waiting a few minutes...</p>
-      </div>
-    );
+  if (loading) return <Loading />;
 
   return (
     <ProductContext.Provider

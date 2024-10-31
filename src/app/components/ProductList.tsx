@@ -8,11 +8,18 @@ import { FilterProduct } from "./FilterProduct";
 import { ProductCard } from "./ProductCard";
 import { SortProduct } from "./SortProduct";
 import { SearchIcon } from "../../../public/icons/SearchIcon";
+import InfiniteScroll from "react-infinite-scroll-component";
+import useMobileView from "../hooks/mobile-view";
+import { Loading } from "./Loading";
 
 export const ProductList = () => {
   const [sortOption, setSortOption] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const { data } = useContext(ProductContext);
+  const { width } = useMobileView();
+  const isMobile = width && width <= 768;
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 10;
 
   const options = useMemo(() => {
     return data.filter(
@@ -74,6 +81,15 @@ export const ProductList = () => {
     });
   }, [data, filters, sortOption, searchTerm]);
 
+  const paginatedData = useMemo(
+    () => filteredData.slice(0, page * itemsPerPage),
+    [filteredData, page, itemsPerPage]
+  );
+
+  const fetchMoreData = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
   return (
     <Fragment>
       <div className="px-3">
@@ -104,9 +120,31 @@ export const ProductList = () => {
           />
         </Box>
         <div className="row-start-3 row-end-4 w-full">
-          <Grid2 container spacing={3} className="flex justify-center">
-            {filteredData.map((value: CardProductProps, index: number) => {
-              return (
+          {isMobile ? (
+            <InfiniteScroll
+              dataLength={paginatedData.length}
+              next={fetchMoreData}
+              hasMore={paginatedData.length < filteredData.length}
+              loader={<Loading />}
+            >
+              <Grid2 container spacing={3} className="flex justify-center mb-2">
+                {paginatedData.map((value: CardProductProps, index: number) => (
+                  <ProductCard
+                    key={index}
+                    id={value.id}
+                    title={value.title}
+                    image={value.image}
+                    description={value.description}
+                    category={value.category}
+                    price={value.price}
+                    rating={value.rating}
+                  />
+                ))}
+              </Grid2>
+            </InfiniteScroll>
+          ) : (
+            <Grid2 container spacing={3} className="flex justify-center">
+              {filteredData.map((value: CardProductProps, index: number) => (
                 <ProductCard
                   key={index}
                   id={value.id}
@@ -117,9 +155,9 @@ export const ProductList = () => {
                   price={value.price}
                   rating={value.rating}
                 />
-              );
-            })}
-          </Grid2>
+              ))}
+            </Grid2>
+          )}
         </div>
       </div>
     </Fragment>
