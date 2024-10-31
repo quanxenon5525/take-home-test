@@ -1,10 +1,13 @@
-This is a Home-Test project generate with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This Home-Test project was generated with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Framework & Library
 
 - ReactJS
 - NextJS
 - MaterialUI
+
+## Mockup API
+Reference: https://fakestoreapi.com/docs
 
 ## How to run Project
 
