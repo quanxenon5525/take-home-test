@@ -72,7 +72,6 @@ const CartPage = () => {
                   width={100}
                   height={100}
                   alt={item.title}
-                  className="rounded"
                 />
               </div>
               <Typography variant="body1" className="flex-1 mx-4">
