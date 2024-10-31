@@ -61,3 +61,8 @@ body {
   top: -15px;
   right: -10px;
 }
+
+.text-field {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

@@ -131,7 +131,7 @@ const CartPage = () => {
             ))}
           </div>
         </InfiniteScroll>
-        <Typography variant="h6" className="font-bold mt-4 mb-4">
+        <Typography variant="h6" className="font-bold text-field">
           Tổng giá: ${calculateTotalPrice()}
         </Typography>
         <Button onClick={handleCheckout} variant="contained" color="primary">

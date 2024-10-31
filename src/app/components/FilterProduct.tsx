@@ -19,7 +19,7 @@ export const FilterProduct: FC<FilterListProps> = ({ control, options }) => {
     new Set(options.map((option) => option.category))
   );
   return (
-    <div className="w-full flex flex-col md:flex-row space-x-5 md:items-center">
+    <div className="w-full flex flex-col md:flex-row md:space-x-5 md:items-center">
       <Controller
         name="category"
         control={control}
@@ -42,7 +42,7 @@ export const FilterProduct: FC<FilterListProps> = ({ control, options }) => {
         name="minRating"
         control={control}
         render={({ field }) => (
-          <div className="flex flex-col">
+          <div className="flex flex-col mt-2 md:mt-0">
             <Typography>Rating:</Typography>
             <Rating
               {...field}
@@ -60,7 +60,7 @@ export const FilterProduct: FC<FilterListProps> = ({ control, options }) => {
         name="maxPrice"
         control={control}
         render={({ field }) => (
-          <div className="flex flex-col">
+          <div className="flex flex-col mt-3 md:mt-4">
             <Typography>Price:</Typography>
             <Slider
               defaultValue={field.value}
