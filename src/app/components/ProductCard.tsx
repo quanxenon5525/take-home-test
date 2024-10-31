@@ -9,6 +9,7 @@ import { FC, useContext, useEffect, useRef, useState } from "react";
 import { ProductContext } from "../context/ProductDataContext";
 import { CardProductProps } from "../types";
 import { RatingStar } from "./RatingStar";
+import { useRouter } from "next/navigation";
 
 export const ProductCard: FC<CardProductProps> = ({
   id,
@@ -23,6 +24,7 @@ export const ProductCard: FC<CardProductProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const descriptionRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (descriptionRef.current) {
@@ -35,6 +37,11 @@ export const ProductCard: FC<CardProductProps> = ({
 
   const handleAddToCart = () => {
     addToCart({ id, title, quantity: 1, image, price });
+  };
+
+  const handleBuyNow = () => {
+    addToCart({ id, title, quantity: 1, image, price });
+    router.push("/cart");
   };
 
   return (
@@ -103,7 +110,7 @@ export const ProductCard: FC<CardProductProps> = ({
         <p className="font-semibold">Review: {rating?.count} reviews</p>
         <RatingStar rate={rating?.rate} />
         <Box className="flex mt-2">
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={handleBuyNow}>
             Buy it now
           </Button>
           <Button size="small" color="primary" onClick={handleAddToCart}>
