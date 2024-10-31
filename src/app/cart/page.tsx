@@ -66,7 +66,7 @@ const CartPage = () => {
 
   return (
     <div className="p-4">
-      <div className="text-center">
+      <div className="text-center space-y-5">
         <Typography variant="h5" gutterBottom>
           Sản phẩm trong giỏ hàng của bạn:
         </Typography>
@@ -80,17 +80,18 @@ const CartPage = () => {
           <div className="flex flex-col items-center space-y-5">
             {cartItems?.map((item, index) => (
               <Box key={index} className="box-cart">
-                <div className="relative">
+                <div className="relative mr-8">
                   <IconButton
                     onClick={() => handleClickOpen(item.image)}
                     className="icon-visible"
                   >
-                    <VisibleIcon fontSize="large" />
+                    <VisibleIcon width={24} height={24} />
                   </IconButton>
                   <Image
+                    className="object-cover"
                     src={item.image}
-                    width={100}
-                    height={100}
+                    width={120}
+                    height={120}
                     alt={item.title}
                   />
                 </div>
@@ -131,15 +132,16 @@ const CartPage = () => {
             ))}
           </div>
         </InfiniteScroll>
-        <Typography variant="h6" className="font-bold text-field">
-          Tổng giá: ${calculateTotalPrice()}
-        </Typography>
-        <Button onClick={handleCheckout} variant="contained" color="primary">
-          <Typography variant="h6" className="text-white">
-            Thanh toán
+        <div className="space-y-1 mt-5">
+          <Typography className="text-lg font-bold text-field">
+            Tổng giá: ${calculateTotalPrice()}
           </Typography>
-        </Button>
+          <Button onClick={handleCheckout} variant="contained" color="primary">
+            <Typography className="text-white">Thanh toán</Typography>
+          </Button>
+        </div>
       </div>
+
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
         <IconButton
           aria-label="close"
