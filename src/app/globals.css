@@ -22,3 +22,7 @@ body {
   font-weight: 400 !important;
   font-style: italic !important;
 }
+
+.over-ride-img {
+  object-fit: contain !important;
+}

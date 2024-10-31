@@ -58,15 +58,12 @@ const CartPage = () => {
           {cartItems?.map((item, index) => (
             <Box
               key={index}
-              className="flex flex-col items-center justify-between w-full max-w-2xl my-4 p-2 border rounded-lg shadow-md sm:flex-row space-y-5"
+              className="flex flex-col items-center justify-between w-full max-w-2xl my-4 p-2 border rounded-lg shadow-md sm:flex-row space-y-2"
             >
-              <div className="relative px-3">
-                <IconButton
-                  onClick={() => handleClickOpen(item.image)}
-                  className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
-                >
-                  <VisibleIcon fontSize="large" />
-                </IconButton>
+              <IconButton onClick={() => handleClickOpen(item.image)}>
+                <VisibleIcon fontSize="large" />
+              </IconButton>
+              <div className="relative ml-3">
                 <Image
                   src={item.image}
                   width={100}
@@ -74,10 +71,8 @@ const CartPage = () => {
                   alt={item.title}
                 />
               </div>
-              <Typography variant="body1" className="flex-1 mx-4">
-                {item.title}
-              </Typography>
-              <Box display="flex" alignItems="center">
+              <Typography className="flex-1 mx-4">{item.title}</Typography>
+              <Box className="flex items-center">
                 <IconButton
                   onClick={() => {
                     if (item.quantity === 1) {
@@ -90,9 +85,7 @@ const CartPage = () => {
                 >
                   <MinusIcon />
                 </IconButton>
-                <Typography variant="body1" className="mx-2">
-                  {item.quantity}
-                </Typography>
+                <Typography className="mx-2">{item.quantity}</Typography>
                 <IconButton
                   onClick={() =>
                     updateCartItemQuantity(item.id, item.quantity + 1)
@@ -102,7 +95,7 @@ const CartPage = () => {
                   <PlusIcon />
                 </IconButton>
               </Box>
-              <Typography variant="body1" className="mx-4">
+              <Typography className="mx-4">
                 Giá: ${item.price * item.quantity}
               </Typography>
               <IconButton

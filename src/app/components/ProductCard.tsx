@@ -47,7 +47,7 @@ export const ProductCard: FC<CardProductProps> = ({
       <CardActionArea>
         <CardMedia
           component="img"
-          className="aspect-square w-full h-full object-contain px-10"
+          className="aspect-square w-full h-full over-ride-img px-10"
           image={image}
           alt="Product Image"
         />
