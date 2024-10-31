@@ -2,9 +2,9 @@ This is a Home-Test project generate with [`create-next-app`](https://nextjs.org
 
 ## Framework & Library
 
-ReactJS
-NextJS
-MaterialUI
+- ReactJS
+- NextJS
+- MaterialUI
 
 ## How to run Project
 
@@ -30,3 +30,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Explanation about my approach and challenges faced during development
+With the initial steps after receiving the assignment, I confirm my intention to undertake the project with your company. After that, I read the assignment and select the libraries and frameworks to be used. Next, I will build the file and folder structure before I start coding.
+
+Regarding the challenges in completing this assignment, I believe that writing test cases for the project is something I have no experience with. I feel that I do not have enough capability or time to complete the unit test cases in the best way possible.
+
+

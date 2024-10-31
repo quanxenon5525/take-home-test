@@ -1,4 +1,4 @@
-import { Box, Grid2 } from "@mui/material";
+import { Box, Grid2, InputAdornment, TextField } from "@mui/material";
 import { Fragment, useContext, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ProductContext } from "../context/ProductDataContext";
@@ -7,10 +7,13 @@ import { BasicBreadcrumbs } from "./Breadcrumbs";
 import { FilterProduct } from "./FilterProduct";
 import { ProductCard } from "./ProductCard";
 import { SortProduct } from "./SortProduct";
+import { SearchIcon } from "../../../public/icons/SearchIcon";
 
 export const ProductList = () => {
   const [sortOption, setSortOption] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
   const { data } = useContext(ProductContext);
+
   const options = useMemo(() => {
     return data.filter(
       (option: any, index, self) =>
@@ -20,6 +23,7 @@ export const ProductList = () => {
         )
     );
   }, [data]);
+
   const { control, watch } = useForm({
     defaultValues: {
       category: "",
@@ -29,6 +33,7 @@ export const ProductList = () => {
   });
 
   const filters = watch();
+
   const filteredData = useMemo(() => {
     const filtered = data.filter((product: CardProductProps) => {
       const matchesCategory = filters.category
@@ -44,7 +49,11 @@ export const ProductList = () => {
         ? Number(product.rating.rate) <= minRating
         : true;
 
-      return matchesCategory && matchesPrice && matchesRating;
+      const matchesSearch = product.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      return matchesCategory && matchesPrice && matchesRating && matchesSearch;
     });
 
     return filtered.sort((a: CardProductProps, b: CardProductProps) => {
@@ -63,7 +72,7 @@ export const ProductList = () => {
           return 0;
       }
     });
-  }, [data, filters, sortOption]);
+  }, [data, filters, sortOption, searchTerm]);
 
   return (
     <Fragment>
@@ -78,6 +87,22 @@ export const ProductList = () => {
             />
           </Box>
         </div>
+        <Box className="mb-5 flex justify-center">
+          <TextField
+            className="max-w-full w-[50%] rounded"
+            variant="outlined"
+            placeholder="Search products by name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon width={24} height={24} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
         <div className="row-start-3 row-end-4 w-full">
           <Grid2 container spacing={3} className="flex justify-center">
             {filteredData.map((value: CardProductProps, index: number) => {
